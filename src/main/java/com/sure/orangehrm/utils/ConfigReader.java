@@ -19,4 +19,14 @@ public class ConfigReader {
     public static String get(String key) {
         return props.getProperty(key);
     }
+
+    //get integer configs with defaults
+    public static int getInt(String key, int defaultVal) {
+        try {
+            return Integer.parseInt(props.getProperty(key));
+        } catch (Exception e) {
+            return defaultVal;
+        }
+    }
+
 }
