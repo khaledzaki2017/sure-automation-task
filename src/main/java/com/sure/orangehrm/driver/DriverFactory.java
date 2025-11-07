@@ -18,6 +18,7 @@ public class DriverFactory {
         if( DRIVER.get()==null){
             WebDriverManager.chromedriver().setup();
             ChromeOptions options=new ChromeOptions();
+            if (isHeadless()) options.addArguments("--headless=new");
             options.addArguments("--start-maximized");
             DRIVER.set(new ChromeDriver(options));
         }
@@ -29,5 +30,8 @@ public class DriverFactory {
             DRIVER.get().quit();
             DRIVER.remove();
         }
+    }
+    private static boolean isHeadless() {
+        return "true".equalsIgnoreCase(System.getProperty("headless", "false"));
     }
 }
