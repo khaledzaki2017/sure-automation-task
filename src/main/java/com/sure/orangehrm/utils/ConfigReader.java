@@ -6,13 +6,16 @@ import java.io.InputStream;
 public class ConfigReader {
     private static final Properties props = new Properties();
 
-    static {
+    public static void load(String fileName) {
         try (InputStream is = Thread.currentThread()
                 .getContextClassLoader()
-                .getResourceAsStream("config.properties")) {
+                .getResourceAsStream(fileName)) {
+            if (is == null) {
+                throw new RuntimeException("Property file not found: " + fileName);
+            }
             props.load(is);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load config.properties", e);
+            throw new RuntimeException("Failed to load "+fileName, e);
         }
     }
 
