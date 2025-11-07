@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "664de4bc-8823-465f-a9c0-059e5eee9015",
+		"name": "Auto Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30965748"
+	},
+	"item": [
+		{
+			"name": "Add Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"empNumber\", jsonData.data.empNumber);\r",
+							"postman.setEnvironmentVariable(\"employeeId\", jsonData.data.employeeId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "orangehrm=81993f0d8e805a563b4af7ae60e5670a"
+					},
+					{
+						"key": "Origin",
+						"value": "https://opensource-demo.orangehrmlive.com"
+					},
+					{
+						"key": "Referer",
+						"value": "https://opensource-demo.orangehrmlive.com/web/index.php/pim/addEmployee"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"Ayman\",\"middleName\":\"Weal\",\"lastName\":\"Ali\",\"empPicture\":null,\"employeeId\":\"03502\"}"
+				},
+				"url": {
+					"raw": "{{BaseURL}}pim/employees",
+					"host": [
+						"{{BaseURL}}pim"
+					],
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Personal Details",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "orangehrm=81993f0d8e805a563b4af7ae60e5670a"
+					},
+					{
+						"key": "Origin",
+						"value": "https://opensource-demo.orangehrmlive.com"
+					},
+					{
+						"key": "Referer",
+						"value": "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber/178"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"QC\",\r\n    \"firstName\": \"Mostafa\",\r\n    \"middleName\": \"Weal\",\r\n    \"employeeId\": \"{{employeeId}}\",\r\n    \"otherId\": \"5\",\r\n    \"drivingLicenseNo\": \"5845\",\r\n    \"drivingLicenseExpiredDate\": \"2025-08-31\",\r\n    \"gender\": \"1\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"birthday\": \"1998-11-30\",\r\n    \"nationalityId\": 55,\r\n    \"sinNumber\": \"01252144\"\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseURL}}pim/employees/{{empNumber}}/personal-details",
+					"host": [
+						"{{BaseURL}}pim"
+					],
+					"path": [
+						"employees",
+						"{{empNumber}}",
+						"personal-details"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/",
+			"type": "string"
+		}
+	]
+}
