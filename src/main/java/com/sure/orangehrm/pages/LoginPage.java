@@ -23,4 +23,12 @@ public class LoginPage {
         WaitHelper.waitForElementVisible(driver, password).sendKeys(pass);
         WaitHelper.waitForElementClickable(driver, loginBtn).click();
     }
+    public String getLoginError() {
+        try {
+            return WaitHelper.waitForElementVisible(driver, By.cssSelector(".oxd-alert-content-text")).getText();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
 }
