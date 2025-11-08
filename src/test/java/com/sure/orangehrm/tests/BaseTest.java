@@ -1,7 +1,7 @@
-package com.sure.orangehrm.tests;
+package com.company.orangehrm.tests;
 
+import com.company.orangehrm.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
 public class BaseTest {
@@ -9,11 +9,11 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = DriverFactory.getDriver();
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        DriverFactory.quitDriver();
     }
 }
