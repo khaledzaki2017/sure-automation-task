@@ -22,7 +22,9 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = DriverFactory.getDriver();
-        System.out.println("[BaseTest] WebDriver started successfully");
+        String baseUrl = ConfigReader.get("baseUrl");
+        driver.get(baseUrl);
+        System.out.println("[BaseTest] Navigated to: " + baseUrl);
     }
 
     @AfterMethod(alwaysRun = true)
