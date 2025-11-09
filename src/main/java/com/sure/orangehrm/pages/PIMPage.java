@@ -35,4 +35,8 @@ public class PIMPage {
             return false;
         }
     }
+    public void openFirstResultEdit() {
+        WaitHelper.waitForElementClickable(driver, firstResult).click();
+    }
+
 }
