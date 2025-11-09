@@ -2,7 +2,8 @@ package com.sure.orangehrm.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import com.sure.orangehrm.utils.WaitHelper;
+import org.openqa.selenium.WebElement;
 public class PIMPage {
     private WebDriver driver;
 
@@ -16,16 +17,22 @@ public class PIMPage {
     }
 
     public void goTo() {
-        driver.findElement(pimMenu).click();
+        WebElement pim = WaitHelper.waitForElementClickable(driver, pimMenu);
+        pim.click();
     }
 
     public void searchByNameOrId(String text) {
-        driver.findElement(searchInput).clear();
-        driver.findElement(searchInput).sendKeys(text);
-        driver.findElement(searchBtn).click();
+        WebElement input = WaitHelper.waitForElementVisible(driver, searchInput);
+        input.clear();
+        input.sendKeys(text);
+        WaitHelper.waitForElementClickable(driver, searchBtn).click();
     }
 
     public boolean isEmployeePresent() {
-        return driver.findElement(firstResult).isDisplayed();
+        try {
+            return WaitHelper.waitForElementVisible(driver, firstResult).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
