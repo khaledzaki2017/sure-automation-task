@@ -1,19 +1,16 @@
 package com.sure.orangehrm.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
-public class DashboardPage {
-    private WebDriver driver;
-    private By dashboardTitle = By.xpath("//h6[text()='Dashboard']");
+public class DashboardPage extends BasePage {
+    public DashboardPage(WebDriver driver) {
+        super(driver);
+    }
 
-    public DashboardPage(WebDriver driver) { this.driver = driver; }
+    private final By dashboardTitle = By.cssSelector("h6.oxd-text--h6");
 
     public boolean isAtDashboard() {
-        try {
-            return driver.findElement(dashboardTitle).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isDisplayed(dashboardTitle);
     }
 }
