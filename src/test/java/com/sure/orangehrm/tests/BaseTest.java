@@ -1,3 +1,4 @@
+
 package com.sure.orangehrm.tests;
 
 import com.sure.orangehrm.driver.DriverFactory;
@@ -11,7 +12,7 @@ public class BaseTest {
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
-        // Load config.properties once before any test class runs
+        // Load config.properties once
         try {
             ConfigReader.load("config.properties");
             System.out.println("[BaseTest] Config file loaded successfully.");
@@ -20,36 +21,25 @@ public class BaseTest {
         }
     }
 
-    @BeforeClass(alwaysRun = true)
-    public void beforeClass() {
-        try {
-            String headless = ConfigReader.get("headless");
-            if (headless == null) headless = "false";
-            System.setProperty("headless", headless);
-            System.out.println("[BaseTest] Headless mode: " + headless);
-        } catch (Exception e) {
-            throw new RuntimeException("[BaseTest] Failed to set headless mode", e);
+
+    protected void initDriverForUI() {
+        if (driver == null) {
+            driver = DriverFactory.getDriver();
+            String baseUrl = ConfigReader.get("base.url");
+            if (baseUrl == null || baseUrl.isEmpty()) {
+                throw new RuntimeException("[BaseTest] Missing key 'base.url' in config.properties");
+            }
+            driver.get(baseUrl);
+            System.out.println("[BaseTest] Navigated to: " + baseUrl);
         }
     }
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        driver = DriverFactory.getDriver();
-
-        String baseUrl = ConfigReader.get("base.url");
-        if (baseUrl == null || baseUrl.isEmpty()) {
-            throw new RuntimeException("[BaseTest] Missing key 'base.url' in config.properties");
-        }
-
-        driver.get(baseUrl);
-        System.out.println("[BaseTest] Navigated to: " + baseUrl);
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
+    @AfterClass(alwaysRun = true)
+    public void quitDriver() {
         if (driver != null) {
-            DriverFactory.quitDriver();
+            driver.quit();
             System.out.println("[BaseTest] WebDriver closed successfully");
+            driver = null;
         }
     }
 }
