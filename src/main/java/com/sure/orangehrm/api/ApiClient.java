@@ -1,24 +1,50 @@
 package com.sure.orangehrm.api;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import com.sure.orangehrm.utils.ConfigReader;
+
+import java.util.Map;
 
 public class ApiClient {
 
-    public static RequestSpecification baseRequest() {
-        String baseUri = ConfigReader.get("api.base");
+    private static final String baseUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/";
+    private static String sessionCookie;
 
-        if (baseUri == null) {
-            System.out.println("Base URI is not set in config!");
-            baseUri = "http://localhost";
+    public static void setSessionCookie(String cookie) {
+        sessionCookie = cookie;
+        System.out.println("[ApiClient] Session cookie set: " + sessionCookie);
+    }
+
+    public static String getSessionCookie() {
+        return sessionCookie;
+    }
+
+    private static RequestSpecification baseRequest() {
+        RequestSpecification req = RestAssured.given()
+                .baseUri(baseUrl)
+                .header("Content-Type", "application/json")
+                .relaxedHTTPSValidation();
+
+        if (sessionCookie != null && !sessionCookie.isEmpty()) {
+            req.header("Cookie", sessionCookie);
         }
+        return req;
+    }
 
-        RestAssured.baseURI = baseUri;
+    public static Response post(String path, Map<String, Object> body) {
+        RequestSpecification request = baseRequest();
+        if (body != null) {
+            request.body(body);
+        }
+        return request.when().post(path);
+    }
 
-        RequestSpecification request = RestAssured.given();
-        request.contentType("application/json");
-
-        return request;
+    public static Response put(String path, Map<String, Object> body) {
+        RequestSpecification request = baseRequest();
+        if (body != null) {
+            request.body(body);
+        }
+        return request.when().put(path);
     }
 }
