@@ -1,5 +1,5 @@
 #surefire
-#Tue Nov 11 08:14:11 EET 2025
+#Tue Nov 11 08:22:56 EET 2025
 childDelegation=false
 classPathUrl.0=/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/target/test-classes
 classPathUrl.1=/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/target/classes
@@ -122,7 +122,7 @@ mainCliOptions1=LOGGING_LEVEL_WARN
 mainCliOptions2=LOGGING_LEVEL_INFO
 mainCliOptions3=LOGGING_LEVEL_DEBUG
 mainCliOptions4=SHOW_ERRORS
-pluginPid=660196
+pluginPid=661494
 preferTestsFromInStream=false
 providerConfiguration=org.apache.maven.surefire.testng.TestNGProvider
 reportsDirectory=/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/target/surefire-reports
