@@ -18,6 +18,15 @@ public class DriverFactory {
         if( DRIVER.get()==null){
             WebDriverManager.chromedriver().setup();
             ChromeOptions options=new ChromeOptions();
+            options.addArguments("--lang=en-US");
+            options.addArguments("--accept-lang=en-US");
+            options.addArguments("--disable-features=TranslateUI");
+            options.addArguments("--disable-translate");
+
+            // Clear cache and cookies
+            options.addArguments("--disable-application-cache");
+            options.addArguments("--disable-cache");
+
             if (isHeadless()) options.addArguments("--headless=new");
             options.addArguments("--start-maximized");
             DRIVER.set(new ChromeDriver(options));

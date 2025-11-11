@@ -1,0 +1,15 @@
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/pages/LoginPage.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/pages/DashboardPage.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/pages/BasePage.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/pages/JobDetailsPage.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/utils/FilesHelper.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/pages/ContactDetailsPage.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/api/PersonalDetailsApi.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/api/ApiClient.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/api/EmployeeApi.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/utils/ConfigReader.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/utils/ElementHelper.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/driver/DriverFactory.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/utils/WaitHelper.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/pages/PIMPage.java
+/home/khaled/Downloads/interview_tasks/Sure Auto Task (1) (2) (1)/sure-automation-task/src/main/java/com/sure/orangehrm/utils/JsonUtils.java

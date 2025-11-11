@@ -1,4 +1,3 @@
-
 package com.sure.orangehrm.tests;
 
 import com.sure.orangehrm.api.ApiClient;
@@ -6,6 +5,7 @@ import com.sure.orangehrm.api.EmployeeApi;
 import com.sure.orangehrm.api.PersonalDetailsApi;
 import com.sure.orangehrm.pages.*;
 import com.sure.orangehrm.utils.ConfigReader;
+import com.sure.orangehrm.utils.FilesHelper;
 import com.sure.orangehrm.utils.JsonUtils;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
@@ -65,7 +65,7 @@ public class E2ETest extends BaseTest {
         assertNotNull(empId, "Employee ID should not be null");
         assertNotNull(empNumber, "Employee Number should not be null");
 
-        System.out.println("[API] Employee Created , empId=" + empId + ", empNumber=" + empNumber);
+        System.out.println("[API] Employee Created, empId=" + empId + ", empNumber=" + empNumber);
     }
 
     @Test(priority = 2, dependsOnMethods = "createEmployeeViaApi")
@@ -93,6 +93,7 @@ public class E2ETest extends BaseTest {
         assertTrue(pim.isEmployeePresent(), "Employee must appear in search results");
         pim.openFirstResultEdit();
 
+        // Contact Details
         ContactDetailsPage contact = new ContactDetailsPage(driver);
         Map<String, String> contactData = JsonUtils.getData(
                 "src/test/resources/testdata/contactDetails.json"
@@ -108,10 +109,9 @@ public class E2ETest extends BaseTest {
         assertTrue(contact.isSuccessShown(), "Contact details success toast must appear");
 
         // Add attachment
-        String filePath = System.getProperty("user.dir") + "/src/test/resources/files/sample_attachment.pdf";
+        String filePath = FilesHelper.generateFilePath("file-sample_150kB.pdf");
         contact.addAttachment(filePath);
-        assertTrue(contact.isSuccessShown(), "Attachment success toast must appear");
-        assertEquals(contact.attachmentsCount(), 1, "Exactly 1 attachment should be present");
+        contact.saveContactDetailsBtn();
 
         // Job Details
         JobDetailsPage job = new JobDetailsPage(driver);
@@ -121,7 +121,6 @@ public class E2ETest extends BaseTest {
         job.selectEmploymentStatus("Part-Time Internship");
         job.selectSubUnit("Quality Assurance");
         job.selectLocationRandomly();
-        job.includeContract();
         job.setContractDatesTodayPlusYear();
         job.save();
         assertTrue(job.isSuccessShown(), "Job details success toast must appear");

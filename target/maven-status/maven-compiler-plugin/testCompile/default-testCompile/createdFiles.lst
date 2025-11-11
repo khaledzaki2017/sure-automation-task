@@ -1,0 +1,3 @@
+com/sure/orangehrm/tests/BaseTest.class
+com/sure/orangehrm/tests/InvalidLoginTest.class
+com/sure/orangehrm/tests/E2ETest.class
