@@ -12,6 +12,6 @@ Built with **Selenium**, **TestNG**, and **RestAssured** following the **Page Ob
 ## How to Run
 mvn clean test 
 
-## Watch the video below to see the task
+## Watch the video below to see the task execution
 
 [![Watch the video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/mNCez2nhey0)
