@@ -21,27 +21,35 @@ public class DriverFactory {
     private static ChromeOptions createChromeOptions() {
         ChromeOptions options = new ChromeOptions();
 
-        // General settings (common for headless + normal)
+        // Required for all environments
         options.addArguments("--lang=en-US");
-        options.addArguments("--accept-lang=en-US");
         options.addArguments("--disable-features=TranslateUI");
         options.addArguments("--disable-translate");
         options.addArguments("--disable-application-cache");
         options.addArguments("--disable-cache");
 
+        // REQUIRED for Chrome 115+ (fixes SessionNotCreated)
+        options.addArguments("--remote-allow-origins=*");
+
         if (isHeadless()) {
             System.out.println("[Headless mode] Tests are running in headless mode");
+
+            // REQUIRED for Jenkins
             options.addArguments("--headless=new");
-            options.addArguments("--window-size=1920,1080");
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--disable-software-rasterizer");
+            options.addArguments("--disable-setuid-sandbox");
+
         } else {
             options.addArguments("--start-maximized");
         }
 
         return options;
     }
+
 
     public static void quitDriver() {
         if (DRIVER.get() != null) {
