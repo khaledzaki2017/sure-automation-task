@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.ChromeDriverService;
 
 public class DriverFactory {
 
@@ -21,20 +22,20 @@ public class DriverFactory {
     private static ChromeOptions createChromeOptions() {
         ChromeOptions options = new ChromeOptions();
 
-        // Required for all environments
+        // Basic options
         options.addArguments("--lang=en-US");
         options.addArguments("--disable-features=TranslateUI");
         options.addArguments("--disable-translate");
         options.addArguments("--disable-application-cache");
         options.addArguments("--disable-cache");
 
-        // REQUIRED for Chrome 115+ (fixes SessionNotCreated)
+        // REQUIRED for Chrome 115+
         options.addArguments("--remote-allow-origins=*");
 
         if (isHeadless()) {
             System.out.println("[Headless mode] Tests are running in headless mode");
 
-            // REQUIRED for Jenkins
+            // Enhanced headless options for Jenkins
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
@@ -42,6 +43,17 @@ public class DriverFactory {
             options.addArguments("--window-size=1920,1080");
             options.addArguments("--disable-software-rasterizer");
             options.addArguments("--disable-setuid-sandbox");
+            options.addArguments("--disable-web-security");
+            options.addArguments("--allow-running-insecure-content");
+            options.addArguments("--disable-extensions");
+            options.addArguments("--disable-plugins");
+            options.addArguments("--disable-background-timer-throttling");
+            options.addArguments("--disable-backgrounding-occluded-windows");
+            options.addArguments("--disable-renderer-backgrounding");
+            options.addArguments("--disable-component-extensions-with-background-pages");
+
+            // Set binary path explicitly if needed
+            // options.setBinary("/usr/bin/google-chrome");
 
         } else {
             options.addArguments("--start-maximized");
@@ -49,7 +61,6 @@ public class DriverFactory {
 
         return options;
     }
-
 
     public static void quitDriver() {
         if (DRIVER.get() != null) {
